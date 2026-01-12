@@ -3,7 +3,7 @@ import gzip
 import struct
 import os
 
-base_path = "C:\\Users\\qurba\\Documents\\Datasets\\MNIST"
+base_path = os.path.join(os.path.dirname(__file__), "datasets", "MNIST")
 
 # load the dataset
 def load_images(filename):
@@ -140,7 +140,7 @@ def backward(x, y_true, z1, h1, z2, y_pred, lr):
 # --- Training settings ---
 lr = 0.1
 batch_size = 64
-epochs = 5     # start small to confirm it's working
+epochs = 3     # start small to confirm it's working
 
 def one_hot(labels, num_classes=10):
     out = np.zeros((labels.size, num_classes))
@@ -156,7 +156,7 @@ N = X_train.shape[1]
 for epoch in range(epochs):
     # shuffle dataset
     perm = np.random.permutation(N)
-    print("{epoch} - perm:", perm)
+    print("perm:", perm, perm.size)
     X_train = X_train[:, perm]
     y_train_oh = y_train_oh[:, perm]
 
